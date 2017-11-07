@@ -1,4 +1,4 @@
-#----------------------------------------------#
+#-------- --------------------------------------#
 # UW RobotX Development Environment Dockerfile #
 #----------------------------------------------#
 
@@ -31,8 +31,9 @@ RUN apt install -y ros-kinetic-opencv3 \
                    ros-kinetic-opencv-apps
 
 # Configure Gazebo 8 simulation framework
-RUN sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable'\
-          '`lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
+RUN echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable" \
+         `lsb_release -cs` main > /etc/apt/sources.list.d/gazebo-stable.list
 RUN wget http://packages.osrfoundation.org/gazebo.key -O - | apt-key add -
+RUN apt update
 RUN apt install -y gazebo8 \
                    libgazebo8-dev
